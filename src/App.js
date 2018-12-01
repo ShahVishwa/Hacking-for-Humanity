@@ -4,6 +4,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
+import JobSeekerSearch from "./views/JobSeekerProfile";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <Navbar />
         <Router>
             <Route path="/" component={Home} />
+            <Route path="/jobseekersearch" component={JobSeekerSearch} />
         </Router>
       </div>
     );
