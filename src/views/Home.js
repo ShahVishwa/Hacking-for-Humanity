@@ -10,9 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const styles = {
-  root: {
-    margin: "40px"
-  },
   title: {
     marginBottom: "10px"
   },
@@ -30,7 +27,7 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <div>
         <Typography variant="h3" color="inherit" className={classes.title}>
           Connecting job seekers and employers
         </Typography>

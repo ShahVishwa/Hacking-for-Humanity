@@ -35,13 +35,9 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <MenuIcon />
-          </IconButton>
+          <Link className={classes.link} to="/">
+            Home
+          </Link>
           <div className={classes.grow}>
             <Link className={classes.link} to="/about">
               About Us
