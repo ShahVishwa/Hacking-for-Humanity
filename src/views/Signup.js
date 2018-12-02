@@ -46,14 +46,16 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Button
-                className={classes.iconButton}
-                variant="contained"
-                size="medium"
-                color="secondary"
-              >
-                  <Link className={classes.link} to="/jobseekers/signup">For Jobseekers</Link>
-              </Button>
+              <Link className={classes.link} to="/jobseekers/signup">
+                <Button
+                  className={classes.iconButton}
+                  variant="contained"
+                  size="medium"
+                  color="secondary"
+                >
+                  For Jobseekers
+                </Button>
+              </Link>
             </Paper>
           </Grid>
           <Grid item sm={12} md={4}>
@@ -63,14 +65,16 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Button
-                className={classes.iconButton}
-                variant="contained"
-                size="medium"
-                color="secondary"
-              >
-                <Link className={classes.link} to="/volunteers/signup">For Volunteers</Link>
-              </Button>
+              <Link className={classes.link} to="/volunteers/signup">
+                <Button
+                  className={classes.iconButton}
+                  variant="contained"
+                  size="medium"
+                  color="secondary"
+                >
+                  For Volunteers
+                </Button>
+              </Link>
             </Paper>
           </Grid>
           <Grid item sm={12} md={4}>
@@ -80,14 +84,16 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Button
-                className={classes.iconButton}
-                variant="contained"
-                size="medium"
-                color="secondary"
-              >
-                  <Link className={classes.link} to="/employers/signup">For Employers</Link>
-              </Button>
+              <Link className={classes.link} to="/employers/signup">
+                <Button
+                  className={classes.iconButton}
+                  variant="contained"
+                  size="medium"
+                  color="secondary"
+                >
+                  For Employers
+                </Button>
+              </Link>
             </Paper>
           </Grid>
         </Grid>
