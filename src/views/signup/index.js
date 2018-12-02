@@ -42,7 +42,7 @@ class Signup extends React.Component {
           <Grid item sm={12} md={4}>
             <Paper className={classes.paper}>
               <img
-                src="https://placeimg.com/640/480/people"
+                src="https://i1.wp.com/manageability.com/wp-content/uploads/2016/05/people-placeholder-full.png?ssl=1"
                 alt="jobseeker"
                 className={classes.icon}
               />
@@ -61,7 +61,7 @@ class Signup extends React.Component {
           <Grid item sm={12} md={4}>
             <Paper className={classes.paper}>
               <img
-                src="https://placeimg.com/640/480/nature"
+                src="https://www.fst.edu/wp-content/uploads/2017/06/Female-placeholder-headshot.jpg"
                 alt="jobseeker"
                 className={classes.icon}
               />
@@ -80,7 +80,7 @@ class Signup extends React.Component {
           <Grid item sm={12} md={4}>
             <Paper className={classes.paper}>
               <img
-                src="https://placeimg.com/640/480/animals"
+                src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
                 alt="jobseeker"
                 className={classes.icon}
               />

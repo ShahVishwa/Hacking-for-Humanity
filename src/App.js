@@ -1,23 +1,27 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import { NotificationContainer } from "react-notifications";
+import 'react-notifications/lib/notifications.css';
 import "./App.css";
 
 import DefaultNavbar from "./components/navbars/DefaultNavbar";
 import EmployerNavbar from "./components/navbars/EmployerNavbar";
+import Menu from "./components/menus";
 
 import Login from "./views/Login";
 import Signup from "./views/signup";
-import EmployerSignup from "./views/signup/Employer";
-import JobsSeekerSignup from "./views/signup/Jobseeker";
 
 import Home from "./views/Home";
-import JobSeekerProfile from "./views/JobSeekerProfile";
-import JobSeekerSearch from "./views/JobSeekerProfile";
-import JobSeekerHome from "./views/JobSeekerHome";
-import EmployerHome from "./views/EmployerHome";
-import Listing from "./views/Listing";
 
-import Menu from "./components/menus";
+import JobsSeekerSignup from "./views/signup/Jobseeker";
+import JobSeekerProfile from "./views/JobSeekerProfile";
+import JobSeekerHome from "./views/JobSeekerHome";
+import JobSeekerRequest from "./views/JobSeekerRequest";
+
+import EmployerSignup from "./views/signup/Employer";
+import EmployerHome from "./views/EmployerHome";
+
+import Listing from "./views/Listing";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -53,12 +57,15 @@ class App extends Component {
     const { userType, menuIsOpen } = this.state;
     return (
       <div>
+        <NotificationContainer />
         <DefaultNavbar
           userType={userType}
           setUserType={this.setUserType}
           handleMenu={this.handleMenu}
         />
-        {menuIsOpen && <Menu handleMenu={this.handleMenu} userType={userType} />}
+        {menuIsOpen && (
+          <Menu handleMenu={this.handleMenu} userType={userType} />
+        )}
         <div className={classes.container}>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
@@ -81,11 +88,17 @@ class App extends Component {
             path="/jobseeker/home"
             render={props => <JobSeekerHome {...props} />}
           />
+          <Route
+            path="/jobseeker/profile"
+            render={props => <JobSeekerProfile {...props} />}
+          />
+          <Route
+            path="/jobseeker/requests"
+            render={props => <JobSeekerRequest {...props} />}
+          />
 
-          <Route path="/listing/:id" render={props => <Listing {...props} />} />
-
-          <Route path="/jobseekerprofile" component={JobSeekerProfile} />
           <Route exact path="/employer/signup" component={EmployerSignup} />
+          <Route path="/listing/:id" render={props => <Listing {...props} />} />
         </div>
       </div>
     );

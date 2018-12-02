@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -43,6 +43,12 @@ class DefaultMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+  }
+
+  handleMenuClick(link) {
+    this.props.handleMenu();
+    this.props.history.push(link);
   }
 
   render() {
@@ -50,14 +56,26 @@ class DefaultMenu extends React.Component {
 
     switch (userType) {
       case "GUEST":
-        return <UnauthorizedMenu handleMenu={handleMenu} classes={classes} />;
+        return (
+          <UnauthorizedMenu
+            handleMenuClick={this.handleMenuClick}
+            handleMenu={handleMenu}
+            classes={classes}
+          />
+        );
       case "JOBSEEKER":
-        return <JobSeekerMenu classes={classes} handleMenu={handleMenu} />;
+        return (
+          <JobSeekerMenu
+            classes={classes}
+            handleMenu={handleMenu}
+            handleMenuClick={this.handleMenuClick}
+          />
+        );
     }
   }
 }
 
-const JobSeekerMenu = ({ classes, handleMenu }) => {
+const JobSeekerMenu = ({ classes, handleMenu, handleMenuClick }) => {
   return (
     <div>
       <div className={classes.root} />
@@ -65,27 +83,30 @@ const JobSeekerMenu = ({ classes, handleMenu }) => {
         <span onClick={handleMenu} className={classes.closeIcon}>
           &#10006;
         </span>
-        <ListItem button>
-          <Link className={classes.linkItem} to="/jobseeker/home">
-            Home
-          </Link>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/home")}
+        >
+          Home
         </ListItem>
-        <ListItem button>
-          <Link className={classes.linkItem} to="/jobseeker/profile">
-            Profile
-          </Link>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/profile")}
+        >
+          Profile
         </ListItem>
-        <ListItem button>
-          <Link className={classes.linkItem} to="/jobseeker/support">
-            Resources Near You
-          </Link>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/requests")}
+        >
+          Things I Need
         </ListItem>
       </div>
     </div>
   );
 };
 
-const UnauthorizedMenu = ({ classes, handleMenu }) => {
+const UnauthorizedMenu = ({ classes, handleMenu, handleMenuClick }) => {
   return (
     <div>
       <div className={classes.root} />
@@ -93,14 +114,12 @@ const UnauthorizedMenu = ({ classes, handleMenu }) => {
         <span onClick={handleMenu} className={classes.closeIcon}>
           &#10006;
         </span>
-        <ListItem button>
-          <Link className={classes.linkItem} to="/">
-            Home
-          </Link>
+        <ListItem button onClick={handleMenuClick.bind(null, "/")}>
+          Home
         </ListItem>
       </div>
     </div>
   );
 };
 
-export default withStyles(styles)(DefaultMenu);
+export default withStyles(styles)(withRouter(DefaultMenu));

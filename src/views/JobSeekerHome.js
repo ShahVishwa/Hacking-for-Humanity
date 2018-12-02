@@ -8,6 +8,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 const styles = {
   subTitle: {
@@ -21,22 +22,36 @@ const styles = {
 class JobSeekerHome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      search: ""
+    };
 
     this.handleListingClick = this.handleListingClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleListingClick(listingId) {
-      this.props.history.push(`/listing/${listingId}`);
+    this.props.history.push(`/listing/${listingId}`);
+  }
+
+  handleChange(evt) {
+    this.setState({ [[evt.target.name]]: evt.target.value });
   }
 
   render() {
     const { classes } = this.props;
+    const { search } = this.state;
     return (
       <div>
         <Typography variant="h5" color="inherit" className={classes.subTitle}>
-          Listings
+          Job Listings
         </Typography>
+        <TextField
+          fullWidth
+          label="Search Jobs"
+          value={search}
+          onChange={this.handleChange}
+        />
         <ListingContainer
           handleListingClick={this.handleListingClick}
           classes={classes}
@@ -48,7 +63,12 @@ class JobSeekerHome extends React.Component {
 
 const ListingContainer = ({ classes, handleListingClick }) => {
   const formattedListings = listings.map(listing => (
-    <ListingCard key={listing.id} listing={listing} classes={classes} handleListingClick={handleListingClick} />
+    <ListingCard
+      key={listing.id}
+      listing={listing}
+      classes={classes}
+      handleListingClick={handleListingClick}
+    />
   ));
 
   return formattedListings;

@@ -19,7 +19,9 @@ const styles = {
     flexGrow: 1
   },
   menuButton: {
-    marginLeft: -12,
+    marginLeft: -12
+  },
+  logo: {
     marginRight: "auto"
   },
   link: {
@@ -139,6 +141,9 @@ class JobSeekerNavBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+            <Typography className={classes.logo} variant="h6" color="inherit">
+              C4S
+            </Typography>
             <Button
               onClick={handleLogOut}
               className={classes.logOutButton}
@@ -166,6 +171,9 @@ const UnauthorizedNavBar = ({ classes, handleLogIn, handleMenu }) => {
           >
             <MenuIcon />
           </IconButton>
+          <Typography className={classes.logo} variant="h6" color="inherit">
+            C4S
+          </Typography>
           <Button
             onClick={handleLogIn}
             className={classes.logInButton}
