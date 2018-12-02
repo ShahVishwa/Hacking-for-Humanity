@@ -11,7 +11,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 const styles = {
   title: {
-    marginBottom: "10px"
+    marginBottom: 15
   },
   getStarted: {
     textDecoration: "none",
@@ -28,7 +28,7 @@ class Home extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Typography variant="h3" color="inherit" className={classes.title}>
+        <Typography variant="h4" color="inherit" className={classes.title}>
           Connecting job seekers and employers
         </Typography>
         <Button variant="contained" size="large" color="primary">
