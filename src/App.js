@@ -11,6 +11,7 @@ import EmployerSignup from "./views/signup/Employer";
 import JobsSeekerSignup from "./views/signup/Jobseeker";
 
 import Home from "./views/Home";
+import JobSeekerProfile from "./views/JobSeekerProfile";
 import JobSeekerSearch from "./views/JobSeekerProfile";
 import JobSeekerHome from "./views/JobSeekerHome";
 import EmployerHome from "./views/EmployerHome";
@@ -80,8 +81,8 @@ class App extends Component {
             render={props => <JobSeekerHome {...props} />}
           />
 
+          <Route path="/jobseekerprofile" component={JobSeekerProfile} />
           <Route exact path="/employer/signup" component={EmployerSignup} />
-          <Route path="/jobseekersearch" component={JobSeekerSearch} />
         </div>
       </div>
     );
