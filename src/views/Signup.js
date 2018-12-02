@@ -14,11 +14,11 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: "center",
     color: theme.palette.text.secondary,
-    margin: 20
+    marginBottom: 10
   },
   icon: {
     width: "100%",
-    marginBottom: 20
+    marginBottom: 10
   },
   iconButton: {
     width: "100%"
@@ -52,7 +52,7 @@ class Signup extends React.Component {
                 size="medium"
                 color="secondary"
               >
-                For Jobseekers
+                  <Link className={classes.link} to="/jobseekers/signup">For Jobseekers</Link>
               </Button>
             </Paper>
           </Grid>
@@ -69,7 +69,7 @@ class Signup extends React.Component {
                 size="medium"
                 color="secondary"
               >
-                <Link to="/volunteers">For Volunteers</Link>
+                <Link className={classes.link} to="/volunteers/signup">For Volunteers</Link>
               </Button>
             </Paper>
           </Grid>
@@ -86,7 +86,7 @@ class Signup extends React.Component {
                 size="medium"
                 color="secondary"
               >
-                For Employers
+                  <Link className={classes.link} to="/employers/signup">For Employers</Link>
               </Button>
             </Paper>
           </Grid>

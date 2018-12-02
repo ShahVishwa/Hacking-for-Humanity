@@ -4,13 +4,14 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
+import JobSeekerSearch from "./views/JobSeekerProfile";
 import Signup from "./views/Signup";
 
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
   container: {
-    margin: "40px"
+    margin: "20px"
   }
 };
 
@@ -23,6 +24,7 @@ class App extends Component {
         <div className={classes.container}>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
+          <Route path="/jobseekersearch" component={JobSeekerSearch} />
         </div>
       </div>
     );
