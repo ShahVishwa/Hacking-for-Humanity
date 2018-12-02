@@ -1,15 +1,15 @@
 import React, {PropTypes, Component} from 'react/addons';
-import controllable from 'react-controllables';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import controllable from 'react-controllables';// done
+import shouldPureComponentUpdate from 'react-pure-render/function';//done
 
-import GoogleMap from 'google-map-react';
-import MarkerExample, {K_SCALE_NORMAL} from './marker_example.jsx';
+import GoogleMap from 'google-map-react';//done
+import MarkerExample, {K_SCALE_NORMAL} from './marker_example.jsx';//done
 
-import {getScale, getRealFromTo} from '../helpers/calc_markers_visibility.js';
-import markerDescriptions from '../constants/marker_descriptions.js';
-import {customDistanceToMouse} from '../helpers/custom_distance.js';
+import {getScale, getRealFromTo} from './calc_markers_visibility.js';//done
+import markerDescriptions from './marker_descriptions.js';//done
+import {customDistanceToMouse} from './custom_distance.js';// done
 
-import {List} from 'immutable';
+import {List} from 'immutable'; //done
 
 const K_MARGIN_TOP = 30;
 const K_MARGIN_RIGHT = 30;
