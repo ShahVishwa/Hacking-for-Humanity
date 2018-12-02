@@ -1,7 +1,5 @@
 import React from "react";
 
-import listings from "../data/listings";
-
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -42,7 +40,7 @@ class JobSeekerHome extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, listings } = this.props;
     const { search } = this.state;
     return (
       <div>
@@ -60,13 +58,14 @@ class JobSeekerHome extends React.Component {
         <ListingContainer
           handleListingClick={this.handleListingClick}
           classes={classes}
+          listings={listings}
         />
       </div>
     );
   }
 }
 
-const ListingContainer = ({ classes, handleListingClick }) => {
+const ListingContainer = ({ classes, handleListingClick, listings }) => {
   const formattedListings = listings.map(listing => (
     <ListingCard
       key={listing.id}

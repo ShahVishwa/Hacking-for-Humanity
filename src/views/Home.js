@@ -16,6 +16,15 @@ const styles = {
   getStarted: {
     textDecoration: "none",
     color: "white"
+  },
+  tag: {
+    textAlign: "center",
+    fontSize: "18px",
+    fontStyle: "italic"
+  },
+  root: {
+    textAlign: "center",
+    paddingTop: "40px"
   }
 };
 
@@ -27,11 +36,11 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <Typography variant="h4" color="inherit" className={classes.title}>
-          Connecting Job Seekers and Employers
-        </Typography>
+      <div className={classes.root}>
         <img src={require("../logo.png")} alt="Logo" />
+        <p className={classes.tag}>
+          Empower, Transform, & Create Connections to Transition into Employment
+        </p>
         <Button variant="contained" size="large" color="primary">
           <Link className={classes.getStarted} to="/signup">
             Get Started

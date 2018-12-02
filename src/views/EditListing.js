@@ -15,24 +15,33 @@ const styles = {
     width: "100%"
   },
   button: {
-    width: "100%",
-    marginBottom: 15
+    width: "100%"
   }
 };
 
-class JobSeekerSignup extends React.Component {
+class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: ""
+      name: "",
+      company: "",
+      description: "",
+      location: "",
+      jobType: "",
+      id: 0
     };
 
     this.onTextChange = this.onTextChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.continueAsGuest = this.continueAsGuest.bind(this);
+    this.updateListing = this.updateListing.bind(this);
+  }
+
+  componentDidMount() {
+    const { listings, match } = this.props;
+    const id = parseInt(match.params.id, 10);
+    const listing = listings.filter(listing => listing.id === id);
+    const { name, location, company, description, jobType } = listing[0];
+
+    this.setState({ name, company, location, description, jobType, id });
   }
 
   onTextChange(evt) {
@@ -41,53 +50,54 @@ class JobSeekerSignup extends React.Component {
     });
   }
 
-  onSubmit() {
-    this.props.setUserType("JOBSEEKER");
-    this.props.history.push("/jobseeker/home");
+  updateListing() {
+    this.props.updateListing(this.state);
   }
-
-  continueAsGuest() {}
 
   render() {
     const { classes } = this.props;
-    const { username, password, firstName, lastName } = this.state;
+    const { name, location, company, description, jobType } = this.state;
+
     return (
       <div>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          Sign Up
+          Add Listing
         </Typography>
         <form>
           <TextField
-            name="username"
+            name="name"
             className={classes.input}
-            label="Username"
-            value={username}
-            required
+            label="Job Title"
+            value={name}
             onChange={this.onTextChange}
           />
           <TextField
-            name="password"
+            name="company"
             className={classes.input}
-            type="password"
-            label="Password"
-            required
-            value={password}
+            label="Company Name"
+            value={company}
             onChange={this.onTextChange}
           />
           <TextField
-            name="firstName"
+            multiline
+            name="description"
             className={classes.input}
-            label="First Name"
-            required
-            value={firstName}
+            label="Description"
+            value={description}
             onChange={this.onTextChange}
           />
           <TextField
-            name="lastName"
+            name="location"
             className={classes.input}
-            required
-            label="Last Name"
-            value={lastName}
+            label="Location"
+            value={location}
+            onChange={this.onTextChange}
+          />
+          <TextField
+            name="jobType"
+            className={classes.input}
+            label="Job Type"
+            value={jobType}
             onChange={this.onTextChange}
           />
           <Button
@@ -95,18 +105,9 @@ class JobSeekerSignup extends React.Component {
             variant="contained"
             size="medium"
             color="primary"
-            onClick={this.onSubmit}
+            onClick={this.updateListing}
           >
-            Sign Up
-          </Button>
-          <Button
-            className={classes.button}
-            variant="contained"
-            size="medium"
-            color="secondary"
-            onClick={this.continueAsGuest}
-          >
-            Continue as Guest
+            Submit
           </Button>
         </form>
       </div>
@@ -114,4 +115,4 @@ class JobSeekerSignup extends React.Component {
   }
 }
 
-export default withStyles(styles)(JobSeekerSignup);
+export default withStyles(styles)(Listing);

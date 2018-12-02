@@ -90,23 +90,14 @@ const EmployerMenu = ({ classes, handleMenu, handleMenuClick }) => {
         <span onClick={handleMenu} className={classes.closeIcon}>
           &#10006;
         </span>
-        <ListItem
-          button
-          onClick={handleMenuClick.bind(null, "/jobseeker/home")}
-        >
+        <ListItem button onClick={handleMenuClick.bind(null, "/employer/home")}>
           Home
         </ListItem>
         <ListItem
           button
-          onClick={handleMenuClick.bind(null, "/jobseeker/profile")}
+          onClick={handleMenuClick.bind(null, "/employer/candidates")}
         >
-          Profile
-        </ListItem>
-        <ListItem
-          button
-          onClick={handleMenuClick.bind(null, "/jobseeker/requests")}
-        >
-          Things I Need
+          Candidates
         </ListItem>
       </div>
     </div>

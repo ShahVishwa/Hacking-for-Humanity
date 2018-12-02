@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import MapIcon from "@material-ui/icons/Map";
 import BackIcon from "@material-ui/icons/NavigateBefore";
 
 const styles = {
@@ -77,6 +78,14 @@ class DefaultNavbar extends React.Component {
           handleMenu={handleMenu}
         />
       );
+    } else if (targetPath === "candidate") {
+      return (
+        <CandidateNavBar
+          handleLogOut={this.handleLogOut}
+          handleGoBack={this.handleGoBack}
+          classes={classes}
+        />
+      );
     } else if (targetPath === "listing") {
       return (
         <ListingNavBar
@@ -94,6 +103,44 @@ class DefaultNavbar extends React.Component {
         />
       );
     }
+  }
+}
+class CandidateNavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { classes, handleLogOut, handleGoBack } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              onClick={handleGoBack}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Open drawer"
+            >
+              <BackIcon />
+            </IconButton>
+            <img
+              className={classes.logo}
+              src={require("../../logo_min.png")}
+              alt="logo"
+            />
+            <Button
+              onClick={handleLogOut}
+              className={classes.logOutButton}
+              color="inherit"
+            >
+              Log Out
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
   }
 }
 
@@ -117,6 +164,11 @@ class ListingNavBar extends React.Component {
             >
               <BackIcon />
             </IconButton>
+            <img
+              className={classes.logo}
+              src={require("../../logo_min.png")}
+              alt="logo"
+            />
             <Button
               onClick={handleLogOut}
               className={classes.logOutButton}
@@ -226,13 +278,14 @@ const UnauthorizedNavBar = ({ classes, handleLogIn, handleMenu }) => {
             src={require("../../logo_min.png")}
             alt="logo"
           />
-          <Button
-            onClick={handleLogIn}
-            className={classes.logInButton}
+          <IconButton
+            onClick={handleMenu}
+            className={classes.menuButton}
             color="inherit"
+            aria-label="Open drawer"
           >
-            Log In
-          </Button>
+            <MapIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>

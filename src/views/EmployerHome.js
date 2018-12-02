@@ -1,7 +1,5 @@
 import React from "react";
 
-import listings from "../data/listings";
-
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -25,39 +23,39 @@ const styles = {
 class EmployerHome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      search: ""
-    };
 
     this.handleListingClick = this.handleListingClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddNewJob = this.handleAddNewJob.bind(this);
   }
 
   handleListingClick(listingId) {
-    this.props.history.push(`/listing/${listingId}`);
+    this.props.history.push(`/employer/listing/edit/${listingId}`);
   }
-
   handleChange(evt) {
     this.setState({ [[evt.target.name]]: evt.target.value });
   }
+  handleAddNewJob() {
+    this.props.history.push(`/employer/add-listing`);
+  }
 
   render() {
-    const { classes } = this.props;
-    const { search } = this.state;
+    const { classes, listings } = this.props;
     return (
       <div>
         <Typography variant="h5" color="inherit" className={classes.subTitle}>
-          Job Listings
+          My Job Listings
         </Typography>
-        <TextField
-          fullWidth
-          label="Search Jobs"
-          value={search}
-          name="search"
-          onChange={this.handleChange}
+        <Button
+          onClick={this.handleAddNewJob}
           className={classes.input}
-        />
+          color="primary"
+          variant="contained"
+        >
+          Add New Job
+        </Button>
         <ListingContainer
+          listings={listings}
           handleListingClick={this.handleListingClick}
           classes={classes}
         />
@@ -66,7 +64,7 @@ class EmployerHome extends React.Component {
   }
 }
 
-const ListingContainer = ({ classes, handleListingClick }) => {
+const ListingContainer = ({ classes, handleListingClick, listings }) => {
   const formattedListings = listings.map(listing => (
     <ListingCard
       key={listing.id}
@@ -102,8 +100,12 @@ const ListingCard = ({ listing, classes, handleListingClick }) => {
         <Typography color="textSecondary">{shortenedDesc}</Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={handleListingClick.bind(null, id)} size="small">
-          Learn More
+        <Button
+          onClick={handleListingClick.bind(null, id)}
+          variant="outlined"
+          size="small"
+        >
+          Edit
         </Button>
       </CardActions>
     </Card>

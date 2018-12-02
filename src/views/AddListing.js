@@ -15,24 +15,23 @@ const styles = {
     width: "100%"
   },
   button: {
-    width: "100%",
-    marginBottom: 15
+    width: "100%"
   }
 };
 
-class JobSeekerSignup extends React.Component {
+class AddListing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: ""
+      name: "",
+      company: "",
+      description: "",
+      location: "",
+      jobType: ""
     };
 
     this.onTextChange = this.onTextChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.continueAsGuest = this.continueAsGuest.bind(this);
   }
 
   onTextChange(evt) {
@@ -42,52 +41,55 @@ class JobSeekerSignup extends React.Component {
   }
 
   onSubmit() {
-    this.props.setUserType("JOBSEEKER");
-    this.props.history.push("/jobseeker/home");
+    this.props.addNewListing({
+      id: Math.floor(Math.random() * 1000),
+      ...this.state
+    });
   }
-
-  continueAsGuest() {}
 
   render() {
     const { classes } = this.props;
-    const { username, password, firstName, lastName } = this.state;
+    const { name, company, location, description, jobType } = this.state;
     return (
       <div>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          Sign Up
+          Add Listing
         </Typography>
         <form>
           <TextField
-            name="username"
+            name="name"
             className={classes.input}
-            label="Username"
-            value={username}
-            required
+            label="Job Title"
+            value={name}
             onChange={this.onTextChange}
           />
           <TextField
-            name="password"
+            name="company"
             className={classes.input}
-            type="password"
-            label="Password"
-            required
-            value={password}
+            label="Company Name"
+            value={company}
             onChange={this.onTextChange}
           />
           <TextField
-            name="firstName"
+            multiline
+            name="description"
             className={classes.input}
-            label="First Name"
-            required
-            value={firstName}
+            label="Description"
+            value={description}
             onChange={this.onTextChange}
           />
           <TextField
-            name="lastName"
+            name="location"
             className={classes.input}
-            required
-            label="Last Name"
-            value={lastName}
+            label="Location"
+            value={location}
+            onChange={this.onTextChange}
+          />
+          <TextField
+            name="jobType"
+            className={classes.input}
+            label="Job Type"
+            value={jobType}
             onChange={this.onTextChange}
           />
           <Button
@@ -97,16 +99,7 @@ class JobSeekerSignup extends React.Component {
             color="primary"
             onClick={this.onSubmit}
           >
-            Sign Up
-          </Button>
-          <Button
-            className={classes.button}
-            variant="contained"
-            size="medium"
-            color="secondary"
-            onClick={this.continueAsGuest}
-          >
-            Continue as Guest
+            Submit
           </Button>
         </form>
       </div>
@@ -114,4 +107,4 @@ class JobSeekerSignup extends React.Component {
   }
 }
 
-export default withStyles(styles)(JobSeekerSignup);
+export default withStyles(styles)(AddListing);

@@ -64,6 +64,7 @@ class Employer extends React.Component {
             name="password"
             className={classes.input}
             label="Password"
+            type="password"
             value={password}
             onChange={this.onTextChange}
           />
@@ -88,7 +89,7 @@ class Employer extends React.Component {
             color="primary"
             onClick={this.onSubmit}
           >
-            Submit
+              Sign Up
           </Button>
         </form>
       </div>

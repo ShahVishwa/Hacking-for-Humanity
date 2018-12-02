@@ -13,28 +13,21 @@ const styles = {
   }
 };
 
-class Listing extends React.Component {
+class Candidate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const { match, classes, listings } = this.props;
+    const { match, classes, candidates } = this.props;
     const id = parseInt(match.params.id, 10);
-    const listing = listings.filter(listing => listing.id === id);
-    const { name, location, company, description } = listing[0];
+    const candidate = candidates.filter(candidate => candidate.id === id);
+    const { name, description } = candidate[0];
 
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            {company}
-          </Typography>
           <Typography variant="h5" component="h2">
             {name}
           </Typography>
@@ -42,7 +35,7 @@ class Listing extends React.Component {
             {description}
           </Typography>
           <Button variant="contained" color="primary" size="medium">
-            Apply
+            Contact
           </Button>
         </CardContent>
       </Card>
@@ -50,4 +43,4 @@ class Listing extends React.Component {
   }
 }
 
-export default withStyles(styles)(Listing);
+export default withStyles(styles)(Candidate);
