@@ -20,12 +20,14 @@ const styles = {
   }
 };
 
-class Login extends React.Component {
+class JobSeekerSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      firstName: "",
+      lastName: ""
     };
 
     this.onTextChange = this.onTextChange.bind(this);
@@ -40,22 +42,21 @@ class Login extends React.Component {
   }
 
   onSubmit() {
-    const values = this.state;
+    const { username, password, firstName, lastName } = this.state;
+
     this.props.setUserType("JOBSEEKER");
     this.props.history.push("/jobseeker/home");
   }
 
-  continueAsGuest() {
-    this.props.history.push("/jobseeker/home");
-  }
+  continueAsGuest() {}
 
   render() {
     const { classes } = this.props;
-    const { username, password } = this.state;
+    const { username, password, firstName, lastName } = this.state;
     return (
       <div>
         <Typography variant="h5" color="inherit" className={classes.title}>
-          Log In
+          Sign Up
         </Typography>
         <form>
           <TextField
@@ -63,6 +64,7 @@ class Login extends React.Component {
             className={classes.input}
             label="Username"
             value={username}
+            required
             onChange={this.onTextChange}
           />
           <TextField
@@ -70,7 +72,24 @@ class Login extends React.Component {
             className={classes.input}
             type="password"
             label="Password"
+            required
             value={password}
+            onChange={this.onTextChange}
+          />
+          <TextField
+            name="firstName"
+            className={classes.input}
+            label="First Name"
+            required
+            value={firstName}
+            onChange={this.onTextChange}
+          />
+          <TextField
+            name="lastName"
+            className={classes.input}
+            required
+            label="Last Name"
+            value={lastName}
             onChange={this.onTextChange}
           />
           <Button
@@ -97,4 +116,4 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(JobSeekerSignup);

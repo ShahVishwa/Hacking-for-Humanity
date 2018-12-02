@@ -46,7 +46,7 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Link className={classes.link} to="/jobseekers/signup">
+              <Link className={classes.link} to="/jobseeker/signup">
                 <Button
                   className={classes.iconButton}
                   variant="contained"
@@ -65,7 +65,7 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Link className={classes.link} to="/volunteers/signup">
+              <Link className={classes.link} to="/volunteer/signup">
                 <Button
                   className={classes.iconButton}
                   variant="contained"

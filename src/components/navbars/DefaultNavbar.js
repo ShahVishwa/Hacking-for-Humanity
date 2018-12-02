@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,46 +19,86 @@ const styles = {
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
+    marginRight: "auto"
   },
   link: {
     display: "inline-block",
     textDecoration: "none",
     color: "white",
     marginRight: 15
-  }
+  },
+  logOutButton: {},
+  logInButton: {}
 };
 
 class DefaultNavbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isMenuOpen: false
-    };
+    this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
-  handleMenu() {
-    this.setState(state => {
-      return { isMenuOpen: !state.isMenuOpen };
-    });
+  handleLogIn() {
+    this.props.history.push("/login");
+  }
+  handleLogOut() {
+    this.props.setUserType("GUEST");
+    this.props.history.push("/");
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, userType, handleMenu } = this.props;
+
+    switch (userType) {
+      case "GUEST":
+        return (
+          <UnauthorizedNavBar
+            handleLogIn={this.handleLogIn}
+            classes={classes}
+            handleMenu={handleMenu}
+          />
+        );
+      case "JOBSEEKER":
+        return (
+          <JobSeekerNavBar
+            handleLogOut={this.handleLogOut}
+            classes={classes}
+            handleMenu={handleMenu}
+          />
+        );
+      default:
+        return <UnauthorizedNavBar classes={classes} />;
+    }
+  }
+}
+
+class JobSeekerNavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { classes, handleLogOut, handleMenu } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <IconButton
+              onClick={handleMenu}
               className={classes.menuButton}
               color="inherit"
               aria-label="Open drawer"
             >
               <MenuIcon />
             </IconButton>
-            <Link className={classes.link} to="/login">
-              Log In
-            </Link>
+            <Button
+              onClick={handleLogOut}
+              className={classes.logOutButton}
+              color="inherit"
+            >
+              Log Out
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
@@ -66,8 +106,34 @@ class DefaultNavbar extends React.Component {
   }
 }
 
+const UnauthorizedNavBar = ({ classes, handleLogIn, handleMenu }) => {
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            onClick={handleMenu}
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Open drawer"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button
+            onClick={handleLogIn}
+            className={classes.logInButton}
+            color="inherit"
+          >
+            Log In
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
+
 DefaultNavbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(DefaultNavbar);
+export default withStyles(styles)(withRouter(DefaultNavbar));
