@@ -15,6 +15,7 @@ import JobSeekerProfile from "./views/JobSeekerProfile";
 import JobSeekerSearch from "./views/JobSeekerProfile";
 import JobSeekerHome from "./views/JobSeekerHome";
 import EmployerHome from "./views/EmployerHome";
+import Listing from "./views/Listing";
 
 import Menu from "./components/menus";
 
@@ -57,7 +58,7 @@ class App extends Component {
           setUserType={this.setUserType}
           handleMenu={this.handleMenu}
         />
-        {menuIsOpen && <Menu userType={userType} />}
+        {menuIsOpen && <Menu handleMenu={this.handleMenu} userType={userType} />}
         <div className={classes.container}>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
@@ -80,6 +81,8 @@ class App extends Component {
             path="/jobseeker/home"
             render={props => <JobSeekerHome {...props} />}
           />
+
+          <Route path="/listing/:id" render={props => <Listing {...props} />} />
 
           <Route path="/jobseekerprofile" component={JobSeekerProfile} />
           <Route exact path="/employer/signup" component={EmployerSignup} />

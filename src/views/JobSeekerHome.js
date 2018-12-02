@@ -27,7 +27,7 @@ class JobSeekerHome extends React.Component {
   }
 
   handleListingClick(listingId) {
-    console.log("listing id: ", listingId);
+      this.props.history.push(`/listing/${listingId}`);
   }
 
   render() {

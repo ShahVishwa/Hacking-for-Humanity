@@ -1,6 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const styles = {
   root: {
@@ -16,10 +21,21 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    width: "45vw",
+    width: "55vw",
     height: "100vh",
     backgroundColor: "white",
     zIndex: 3000
+  },
+  closeIcon: {
+    display: "block",
+    marginLeft: "80%",
+    fontSize: "24px",
+    marginTop: "5px"
+  },
+  linkItem: {
+    textDecoration: "none",
+    color: "black",
+    fontSize: "16px"
   }
 };
 
@@ -30,31 +46,59 @@ class DefaultMenu extends React.Component {
   }
 
   render() {
-    const { userType, classes } = this.props;
+    const { userType, classes, handleMenu } = this.props;
 
     switch (userType) {
       case "GUEST":
-        return <UnauthorizedMenu classes={classes} />;
+        return <UnauthorizedMenu handleMenu={handleMenu} classes={classes} />;
       case "JOBSEEKER":
-        return <JobSeekerMenu classes={classes} />;
+        return <JobSeekerMenu classes={classes} handleMenu={handleMenu} />;
     }
   }
 }
 
-const JobSeekerMenu = ({ classes }) => {
+const JobSeekerMenu = ({ classes, handleMenu }) => {
   return (
     <div>
       <div className={classes.root} />
-      <div className={classes.menu}>Hello</div>
+      <div className={classes.menu}>
+        <span onClick={handleMenu} className={classes.closeIcon}>
+          &#10006;
+        </span>
+        <ListItem button>
+          <Link className={classes.linkItem} to="/jobseeker/home">
+            Home
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <Link className={classes.linkItem} to="/jobseeker/profile">
+            Profile
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <Link className={classes.linkItem} to="/jobseeker/support">
+            Resources Near You
+          </Link>
+        </ListItem>
+      </div>
     </div>
   );
 };
 
-const UnauthorizedMenu = ({ classes }) => {
+const UnauthorizedMenu = ({ classes, handleMenu }) => {
   return (
     <div>
       <div className={classes.root} />
-      <div className={classes.menu}>Hello</div>
+      <div className={classes.menu}>
+        <span onClick={handleMenu} className={classes.closeIcon}>
+          &#10006;
+        </span>
+        <ListItem button>
+          <Link className={classes.linkItem} to="/">
+            Home
+          </Link>
+        </ListItem>
+      </div>
     </div>
   );
 };
