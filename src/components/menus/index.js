@@ -71,9 +71,47 @@ class DefaultMenu extends React.Component {
             handleMenuClick={this.handleMenuClick}
           />
         );
+      case "EMPLOYER":
+        return (
+          <EmployerMenu
+            classes={classes}
+            handleMenu={handleMenu}
+            handleMenuClick={this.handleMenuClick}
+          />
+        );
     }
   }
 }
+const EmployerMenu = ({ classes, handleMenu, handleMenuClick }) => {
+  return (
+    <div>
+      <div className={classes.root} />
+      <div className={classes.menu}>
+        <span onClick={handleMenu} className={classes.closeIcon}>
+          &#10006;
+        </span>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/home")}
+        >
+          Home
+        </ListItem>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/profile")}
+        >
+          Profile
+        </ListItem>
+        <ListItem
+          button
+          onClick={handleMenuClick.bind(null, "/jobseeker/requests")}
+        >
+          Things I Need
+        </ListItem>
+      </div>
+    </div>
+  );
+};
 
 const JobSeekerMenu = ({ classes, handleMenu, handleMenuClick }) => {
   return (

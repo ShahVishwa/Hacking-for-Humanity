@@ -40,9 +40,8 @@ class Employer extends React.Component {
   }
 
   onSubmit() {
-      const values = this.state;
+      this.props.setUserType("EMPLOYER");
       this.props.history.push("/employer/home")
-      // TODO: send this to server somewhere
   }
 
   render() {

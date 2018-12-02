@@ -42,8 +42,6 @@ class JobSeekerSignup extends React.Component {
   }
 
   onSubmit() {
-    const { username, password, firstName, lastName } = this.state;
-
     this.props.setUserType("JOBSEEKER");
     this.props.history.push("/jobseeker/home");
   }

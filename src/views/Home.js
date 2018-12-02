@@ -29,8 +29,9 @@ class Home extends React.Component {
     return (
       <div>
         <Typography variant="h4" color="inherit" className={classes.title}>
-          Connecting job seekers and employers
+          Connecting Job Seekers and Employers
         </Typography>
+        <img src={require("../logo.png")} alt="Logo" />
         <Button variant="contained" size="large" color="primary">
           <Link className={classes.getStarted} to="/signup">
             Get Started

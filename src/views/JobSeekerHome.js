@@ -12,9 +12,12 @@ import TextField from "@material-ui/core/TextField";
 
 const styles = {
   subTitle: {
-    marginBottom: 10
+    marginBottom: 15
   },
   card: {
+    marginBottom: 15
+  },
+  input: {
     marginBottom: 15
   }
 };
@@ -50,7 +53,9 @@ class JobSeekerHome extends React.Component {
           fullWidth
           label="Search Jobs"
           value={search}
+          name="search"
           onChange={this.handleChange}
+          className={classes.input}
         />
         <ListingContainer
           handleListingClick={this.handleListingClick}

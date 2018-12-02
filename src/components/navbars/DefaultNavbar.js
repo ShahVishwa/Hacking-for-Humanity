@@ -22,7 +22,9 @@ const styles = {
     marginLeft: -12
   },
   logo: {
-    marginRight: "auto"
+    marginRight: "auto",
+    width: "30px",
+    height: "30px"
   },
   link: {
     display: "inline-block",
@@ -54,35 +56,43 @@ class DefaultNavbar extends React.Component {
   }
 
   render() {
-    const { classes, handleMenu, location } = this.props;
+    const { classes, handleMenu, location, isAuthenticated } = this.props;
     const paths = location.pathname.split("/");
     const targetPath = paths[1];
+    const secondPath = paths[2];
 
-    switch (targetPath) {
-      case "jobseeker":
-        return (
-          <JobSeekerNavBar
-            handleLogOut={this.handleLogOut}
-            classes={classes}
-            handleMenu={handleMenu}
-          />
-        );
-      case "listing":
-        return (
-          <ListingNavBar
-            handleLogOut={this.handleLogOut}
-            handleGoBack={this.handleGoBack}
-            classes={classes}
-          />
-        );
-      default:
-        return (
-          <UnauthorizedNavBar
-            handleLogIn={this.handleLogIn}
-            classes={classes}
-            handleMenu={handleMenu}
-          />
-        );
+    if (targetPath === "jobseeker" && secondPath !== "signup") {
+      return (
+        <JobSeekerNavBar
+          handleLogOut={this.handleLogOut}
+          classes={classes}
+          handleMenu={handleMenu}
+        />
+      );
+    } else if (targetPath === "employer" && secondPath !== "signup") {
+      return (
+        <EmployerNavBar
+          handleLogOut={this.handleLogOut}
+          classes={classes}
+          handleMenu={handleMenu}
+        />
+      );
+    } else if (targetPath === "listing") {
+      return (
+        <ListingNavBar
+          handleLogOut={this.handleLogOut}
+          handleGoBack={this.handleGoBack}
+          classes={classes}
+        />
+      );
+    } else {
+      return (
+        <UnauthorizedNavBar
+          handleLogIn={this.handleLogIn}
+          classes={classes}
+          handleMenu={handleMenu}
+        />
+      );
     }
   }
 }
@@ -120,6 +130,44 @@ class ListingNavBar extends React.Component {
     );
   }
 }
+class EmployerNavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { classes, handleLogOut, handleMenu } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              onClick={handleMenu}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+            <img
+              className={classes.logo}
+              src={require("../../logo_min.png")}
+              alt="logo"
+            />
+            <Button
+              onClick={handleLogOut}
+              className={classes.logOutButton}
+              color="inherit"
+            >
+              Log Out
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
+}
 
 class JobSeekerNavBar extends React.Component {
   constructor(props) {
@@ -141,9 +189,11 @@ class JobSeekerNavBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.logo} variant="h6" color="inherit">
-              C4S
-            </Typography>
+            <img
+              className={classes.logo}
+              src={require("../../logo_min.png")}
+              alt="logo"
+            />
             <Button
               onClick={handleLogOut}
               className={classes.logOutButton}
@@ -171,9 +221,11 @@ const UnauthorizedNavBar = ({ classes, handleLogIn, handleMenu }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.logo} variant="h6" color="inherit">
-            C4S
-          </Typography>
+          <img
+            className={classes.logo}
+            src={require("../../logo_min.png")}
+            alt="logo"
+          />
           <Button
             onClick={handleLogIn}
             className={classes.logInButton}

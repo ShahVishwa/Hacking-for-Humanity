@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { NotificationContainer } from "react-notifications";
-import 'react-notifications/lib/notifications.css';
+import "react-notifications/lib/notifications.css";
 import "./App.css";
 
 import DefaultNavbar from "./components/navbars/DefaultNavbar";
-import EmployerNavbar from "./components/navbars/EmployerNavbar";
 import Menu from "./components/menus";
 
 import Login from "./views/Login";
@@ -36,11 +35,13 @@ class App extends Component {
     super(props);
     this.state = {
       userType: "GUEST",
+      isAuthenticated: false,
       menuIsOpen: false
     };
 
     this.setUserType = this.setUserType.bind(this);
     this.handleMenu = this.handleMenu.bind(this);
+    this.handleUserAuth = this.handleUserAuth.bind(this);
   }
 
   setUserType(userType) {
@@ -51,10 +52,15 @@ class App extends Component {
       return { menuIsOpen: !state.menuIsOpen };
     });
   }
+  handleUserAuth() {
+    this.setState(state => {
+      return { isAuthenticated: !state.isAuthenticated };
+    });
+  }
 
   render() {
     const { classes } = this.props;
-    const { userType, menuIsOpen } = this.state;
+    const { userType, menuIsOpen, isAuthenticated } = this.state;
     return (
       <div>
         <NotificationContainer />
@@ -62,6 +68,7 @@ class App extends Component {
           userType={userType}
           setUserType={this.setUserType}
           handleMenu={this.handleMenu}
+          isAuthenticated={isAuthenticated}
         />
         {menuIsOpen && (
           <Menu handleMenu={this.handleMenu} userType={userType} />
@@ -97,23 +104,24 @@ class App extends Component {
             render={props => <JobSeekerRequest {...props} />}
           />
 
-          <Route exact path="/employer/signup" component={EmployerSignup} />
+          <Route
+            exact
+            path="/employer/signup"
+            render={props => (
+              <EmployerSignup {...props} setUserType={this.setUserType} />
+            )}
+          />
+          <Route
+            exact
+            path="/employer/home"
+            render={props => <EmployerHome {...props} />}
+          />
+
           <Route path="/listing/:id" render={props => <Listing {...props} />} />
         </div>
       </div>
     );
   }
 }
-
-const EmployerRoutes = ({ classes }) => {
-  return (
-    <div>
-      <EmployerNavbar />
-      <div className={classes.container}>
-        <Route exact path="/employer/home" component={EmployerHome} />
-      </div>
-    </div>
-  );
-};
 
 export default withStyles(styles)(App);
