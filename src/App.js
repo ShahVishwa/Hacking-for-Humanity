@@ -5,7 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import JobSeekerSearch from "./views/JobSeekerProfile";
-import Signup from "./views/Signup";
+import Signup from "./views/signup";
 
 import { withStyles } from "@material-ui/core/styles";
 
