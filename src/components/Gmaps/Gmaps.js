@@ -1,23 +1,23 @@
 // import React, {PropTypes, Component} from 'react/addons';
-// import controllable from 'react-controllables';
-// import shouldPureComponentUpdate from 'react-pure-render/function';
-
-import GoogleMap from 'google-map-react';
-// import MarkerExample, {K_SCALE_NORMAL} from './marker_example.jsx';
+// import controllable from 'react-controllables';// done
+// import shouldPureComponentUpdate from 'react-pure-render/function';//done
 //
-// import {getScale, getRealFromTo} from '../helpers/calc_markers_visibility.js';
-// import markerDescriptions from '../constants/marker_descriptions.js';
-// import {customDistanceToMouse} from '../helpers/custom_distance.js';
-
-// import {List} from 'immutable';
-
+// import GoogleMap from 'google-map-react';//done
+// import MarkerExample, {K_SCALE_NORMAL} from './marker_example.jsx';//done
+//
+// import {getScale, getRealFromTo} from './calc_markers_visibility.js';//done
+// import markerDescriptions from './marker_descriptions.js';//done
+// import {customDistanceToMouse} from './custom_distance.js';// done
+//
+// import {List} from 'immutable'; //done
+//
 // const K_MARGIN_TOP = 30;
 // const K_MARGIN_RIGHT = 30;
 // const K_MARGIN_BOTTOM = 30;
 // const K_MARGIN_LEFT = 30;
 //
 // const K_HOVER_DISTANCE = 30;
-
+//
 // @controllable(['center', 'zoom', 'markers'])
 // class MainMapBlock extends Component {
 //   static propTypes = {
@@ -127,5 +127,6 @@ import GoogleMap from 'google-map-react';
 //     );
 //   }
 // }
-
+//
 // export default MainMapBlock;
+// >>>>>>> 89fa60d2884767ddd6b41bb1624f64bd4c3ec178
