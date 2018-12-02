@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import Chip from './Chip';
-import MainMapBlock from './Gmaps';
+import Chip from '../components/Chip';
 
-class JobSeekerSearch extends Component {
+class JobSeekerProfile extends Component {
   render() {
 
     return (
       <div>
-        <h4>Job JobSeekerSearch</h4>
-        <Chip
-      />
-      <MainMapBlock />
+      <div className="username">
+        <h3>John Doe</h3>
+        <img id='avatar' src="./" />
+      
+      </div>
+      <div className="button">Searching for</div>
+        <Chip />
+      
       </div>
     );
   }
 }
 
-export default JobSeekerSearch;
+export default JobSeekerProfile;

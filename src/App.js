@@ -4,7 +4,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Home from "./views/Home";
-import JobSeekerSearch from "./views/JobSeekerProfile";
+import JobSeekerProfile from "./views/JobSeekerProfile";
 import Signup from "./views/signup";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -24,7 +24,7 @@ class App extends Component {
         <div className={classes.container}>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
-          <Route path="/jobseekersearch" component={JobSeekerSearch} />
+          <Route path="/jobseekerprofile" component={JobSeekerProfile} />
         </div>
       </div>
     );
