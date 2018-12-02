@@ -29,7 +29,7 @@ const styles = {
   }
 };
 
-class ButtonAppBar extends React.Component {
+class EmployerNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +57,7 @@ class ButtonAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Link className={classes.link} to="/login">
-              Log In
+                Employers
             </Link>
           </Toolbar>
         </AppBar>
@@ -66,8 +66,8 @@ class ButtonAppBar extends React.Component {
   }
 }
 
-ButtonAppBar.propTypes = {
+EmployerNavbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(EmployerNavbar);

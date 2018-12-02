@@ -84,7 +84,7 @@ class Signup extends React.Component {
                 alt="jobseeker"
                 className={classes.icon}
               />
-              <Link className={classes.link} to="/employers/signup">
+              <Link className={classes.link} to="/employer/signup">
                 <Button
                   className={classes.iconButton}
                   variant="contained"
